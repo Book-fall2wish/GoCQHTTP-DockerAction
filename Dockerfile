@@ -8,6 +8,7 @@ ARG BIN_LINK_ARM64=https://github.com/Mrs4s/go-cqhttp/releases/download/${VERSIO
 ARG TARGETARCH
 
 ENV TZ Asia/Shanghai
+ENV DEBIAN_FRONTEND=noninteractive
 ARG BIN_LINK
 WORKDIR /app
 
