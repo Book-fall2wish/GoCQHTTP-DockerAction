@@ -13,7 +13,7 @@ services:
         volumes:
             - ./cqdata:/cqdata
             - ./haruka_bot:/haruka_bot
-        image: 'haruka_gocq:latest'
+        image: 'fall2wish/harukabot_gocq:latest'
 ```
 
 首次启动后
