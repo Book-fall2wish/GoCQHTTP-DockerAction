@@ -10,22 +10,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: Book-fall2wish/GoCQHTTP-DockerAction
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
 
-      - name: Set up Docker
-        uses: Book-fall2wish/GoCQHTTP-DockerAction
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-      - name: Build Docker image
-        run: |
-          docker build \
-            --build-arg VERSION=v1.1.0 \
-            --build-arg BIN_LINK_AMD64=https://github.com/Mrs4s/go-cqhttp/releases/download/${{ env.VERSION }}/go-cqhttp_linux_amd64.tar.gz \
-            --build-arg BIN_LINK_ARM64=https://github.com/Mrs4s/go-cqhttp/releases/download/${{ env.VERSION }}/go-cqhttp_linux_arm64.tar.gz \
-            --build-arg TARGETARCH=amd64 \
-            -t fall2wish/harukabot_gocq::latest  .
-        
-      - name: Push Docker image
-        run: |
-          echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-          docker push fall2wish/harukabot_gocq:latest
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: fall2wish/harukabot_gocq:latest
+          build-args: |
+            VERSION=v1.1.0
+            BIN_LINK_AMD64=https://github.com/Mrs4s/go-cqhttp/releases/download/${{ env.VERSION }}/go-cqhttp_linux_amd64.tar.gz
+            BIN_LINK_ARM64=https://github.com/Mrs4s/go-cqhttp/releases/download/${{ env.VERSION }}/go-cqhttp_linux_arm64.tar.gz
+            TARGETARCH=amd64
