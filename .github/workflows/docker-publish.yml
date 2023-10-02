@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: Book-fall2wish/GoCQHTTP-DockerAction
 
       - name: Set up Docker
-        uses: docker/setup-docker@v2
+        uses: Book-fall2wish/GoCQHTTP-DockerAction
 
       - name: Build Docker image
         run: |
