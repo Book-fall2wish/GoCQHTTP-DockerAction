@@ -11,9 +11,7 @@ ENV TZ Asia/Shanghai
 ARG BIN_LINK
 WORKDIR /app
 
-RUN echo "TARGETARCH=${TARGETARCH}" && \
-    echo "BIN_LINK=${BIN_LINK}" && \
-    apt-get update && \
+RUN apt-get update && \
     apt-get install -y curl tar yasm ffmpeg tzdata && \
     case ${TARGETARCH} in \
         "amd64") BIN_LINK=${BIN_LINK_AMD64} ;; \
