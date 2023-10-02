@@ -1,29 +1,50 @@
-# Go-CQHTTP-Docker
+## Go-CQHTTP&HarukaBot Docker
 
 [![Docker](https://img.shields.io/docker/cloud/automated/xzsk2/gocqhttp-docker)](https://hub.docker.com/repository/docker/xzsk2/gocqhttp-docker)
 
-[Mrs4s/go-cqhttp](https://github.com/Mrs4s/go-cqhttp) 的Docker启动环境
+[Mrs4s/go-cqhttp](https://github.com/Mrs4s/go-cqhttp) 和[SK-415/HarukaBot](https://github.com/SK-415/HarukaBot)的Docker启动环境
 
-**建议使用 [TG-EFB-QQ-Docker](https://github.com/xzsk2/TG-EFB-QQ-Docker) 进行QQ到Telegram的双向消息转发**
+```compose
+docker compose:
+version: '3'
+services:
+    qqbot:
+        restart: always
+        volumes:
+            - ./cqdata:/cqdata
+            - ./haruka_bot:/haruka_bot
+        image: 'haruka_gocq:latest'
+```
 
-## 使用
+首次启动后
 
-1. 生成配置文件`config.yml`，选择`1：HTTP通信`
-   
-    ```bash
-    docker run --rm -it --name="gocq" -v $PWD/gocq:/data xzsk2/gocqhttp-docker:latest
-    ```
+```bash
+docker exec -it qqbot /bin/bash
+/cqdata/go-cqhttp
+```
 
-2. 修改`gocq/config.yml`，参考 [go-cqhttp 帮助中心](https://docs.go-cqhttp.org/guide/config.html)
-   
-3. 运行
+输入3（使用反代服务）后关闭docker。
+更改/cqdata内的config.yml，
 
-    ```bash
-    docker run -d --name="gocq" -v $PWD/gocq:/data xzsk2/gocqhttp-docker:latest
-    ```
+参考[go-cqhttp 帮助中心](https://docs.go-cqhttp.org/guide/config.html)和[Haruka-Bot文档-安装 go-cqhttp部分](https://haruka-bot.sk415.icu/install/install-go-cqhttp.html#%E5%AE%89%E8%A3%85-go-cqhttp)
 
-4. 登陆
+##示例
+```yml
+account:
+  uin: 1233456 # 机器人QQ账号
 
-    ```bash
-    docker logs gocq
-    ```
+servers:
+  - ws-reverse:
+      universal: ws://127.0.0.1:8080/onebot/v11/ws
+```
+
+重新启动docker，进入容器
+
+```bash
+docker exec -it qqbot /bin/bash
+cd /cqdata
+/app/go-cqhttp
+```
+
+按提示登录后可正常使用
+
