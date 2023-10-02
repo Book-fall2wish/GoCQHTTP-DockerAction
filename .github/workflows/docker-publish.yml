@@ -22,8 +22,8 @@ jobs:
             --build-arg VERSION=v1.1.0 \
             --build-arg BIN_LINK_AMD64=https://github.com/Mrs4s/go-cqhttp/releases/download/${{ env.VERSION }}/go-cqhttp_linux_amd64.tar.gz \
             --build-arg BIN_LINK_ARM64=https://github.com/Mrs4s/go-cqhttp/releases/download/${{ env.VERSION }}/go-cqhttp_linux_arm64.tar.gz \
-            --build-arg TARGETARCH=amd64
-            -t your-docker-image-name:latest .
+            --build-arg TARGETARCH=amd64 \
+            -t fall2wish/harukabot_gocq::latest  .
         
       - name: Push Docker image
         run: |
