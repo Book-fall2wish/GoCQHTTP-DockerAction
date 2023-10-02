@@ -28,4 +28,4 @@ jobs:
       - name: Push Docker image
         run: |
           echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-          docker push your-docker-image-name:latest
+          docker push fall2wish/harukabot_gocq:latest
