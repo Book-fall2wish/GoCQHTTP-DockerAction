@@ -24,8 +24,8 @@ jobs:
 
       - name: Build and push
         uses: docker/build-push-action@v5
+        working-directory: ./app
         with:
-          context: .
           push: true
           tags: fall2wish/harukabot_gocq:latest
           build-args: |
