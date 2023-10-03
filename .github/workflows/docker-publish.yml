@@ -2,14 +2,19 @@ name: Build Docker Image
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+
+      - name: Check Out Repo 
+        uses: actions/checkout@v3
+        
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
@@ -26,9 +31,11 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
+          context: ./
           tags: fall2wish/harukabot_gocq:latest
           build-args: |
             VERSION=v1.1.0
-            BIN_LINK_AMD64=https://github.com/Mrs4s/go-cqhttp/releases/download/${{ env.VERSION }}/go-cqhttp_linux_amd64.tar.gz
-            BIN_LINK_ARM64=https://github.com/Mrs4s/go-cqhttp/releases/download/${{ env.VERSION }}/go-cqhttp_linux_arm64.tar.gz
             TARGETARCH=amd64
+            
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
