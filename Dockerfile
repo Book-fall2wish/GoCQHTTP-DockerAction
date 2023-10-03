@@ -1,6 +1,9 @@
 FROM python:3.10-slim-bullseye
+
 # 复制 start.sh 到容器内
 COPY start.sh /app/start.sh
+# 复制字体文件
+COPY HarmonyOS_Sans_Black.ttf /usr/share/fonts/
 
 ARG VERSION=v1.1.0
 ARG BIN_LINK_AMD64=https://github.com/Mrs4s/go-cqhttp/releases/download/${VERSION}/go-cqhttp_linux_amd64.tar.gz
