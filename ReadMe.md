@@ -48,3 +48,8 @@ cd /cqdata
 
 按提示登录后可正常使用
 
+#感谢：
+[GitHub:Mrs4s/Go-CQHTTP](https://github.com/Mrs4s/go-cqhttp)
+[GitHub:sakarie9/Go-CQHTTP-Docker](https://github.com/sakarie9/Go-CQHTTP-Docker)
+[GitHub:SK-415/HarukaBot](https://github.com/SK-415/HarukaBot)
+[dockerhub:theinkstain/haruka-bot](https://hub.docker.com/r/theinkstain/haruka-bot)
