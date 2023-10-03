@@ -49,6 +49,7 @@ cd /cqdata
 按提示登录后可正常使用
 
 #感谢：
+
 [GitHub:Mrs4s/Go-CQHTTP](https://github.com/Mrs4s/go-cqhttp)
 
 [GitHub:sakarie9/Go-CQHTTP-Docker](https://github.com/sakarie9/Go-CQHTTP-Docker)
