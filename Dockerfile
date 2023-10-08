@@ -21,4 +21,4 @@ RUN apt-get update && \
     chmod +x go-cqhttp
 
 WORKDIR /cqdata
-RUN /app/go-cqhttp faststart
+CMD /app/go-cqhttp faststart
