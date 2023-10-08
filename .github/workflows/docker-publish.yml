@@ -32,7 +32,7 @@ jobs:
         with:
           push: true
           context: ./
-          tags: fall2wish/harukabot_gocq:latest
+          tags: fall2wish/gocq:latest
           build-args: |
             VERSION=v1.1.0
             TARGETARCH=amd64
